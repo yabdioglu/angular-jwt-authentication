@@ -20,6 +20,18 @@ export class UserService {
     return this.httpClient.post(`${this.PATH_OF_API}/authenticate`, loginData, { headers: this.requestHeader });
   }
 
+  public forUser() {
+    return this.httpClient.get(`${this.PATH_OF_API}/forUser`, {
+      responseType: 'text',
+    });
+  }
+
+  public forAdmin() {
+    return this.httpClient.get(`${this.PATH_OF_API}/forAdmin`, {
+      responseType: 'text',
+    });
+  }
+
   public roleMatch(allowedRoles: any): boolean {
     let isMatch = false;
     const userRoles: any = this.userAuthService.getRoles();

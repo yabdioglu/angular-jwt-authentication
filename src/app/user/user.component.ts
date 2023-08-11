@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -6,5 +7,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent {
+
+  message: string = "";
+
+  constructor(private userService: UserService) { }
+
+  ngOnInit(): void {
+    this.forUser();
+  }
+
+  forUser() {
+    this.userService.forUser().subscribe(
+      (response) => {
+        console.log(response);
+        this.message = response;
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+  }
 
 }
